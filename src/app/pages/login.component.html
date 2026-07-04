@@ -1,0 +1,41 @@
+<main class="min-h-screen bg-surface-container-low flex items-center justify-center px-lg py-xl">
+<section class="bg-surface-container-lowest rounded-2xl shadow-lg border border-outline-variant overflow-hidden" style="width: 100%; max-width: 360px;">
+<div class="bg-primary text-on-primary px-xl py-lg text-center">
+<p class="font-label-md text-label-md uppercase tracking-wider opacity-80 mb-xs">Sistema Veterinario</p>
+<h1 class="font-headline-md text-headline-md font-bold">Veterinaria PetCare</h1>
+</div>
+
+<div class="p-lg">
+<div class="mb-lg text-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface mb-xs">Iniciar sesión</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ingresa tus credenciales para acceder.</p>
+</div>
+
+<form [formGroup]="loginForm" (ngSubmit)="ingresar()" class="space-y-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Usuario</label>
+<input formControlName="usuario" class="w-full rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-surface text-on-surface px-md py-sm transition-all" placeholder="drgarcia" type="text"/>
+</div>
+
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Contraseña</label>
+<input formControlName="clave" class="w-full rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none bg-surface text-on-surface px-md py-sm transition-all" placeholder="123456" type="password"/>
+</div>
+
+@if (mensaje) {
+<p class="font-body-sm text-body-sm text-error">{{ mensaje }}</p>
+}
+
+<button type="submit" class="w-full bg-primary text-on-primary py-md rounded-lg font-label-md text-label-md hover:brightness-110 transition-all active:scale-95 flex items-center justify-center gap-sm">
+<span class="material-symbols-outlined text-sm">login</span>
+Entrar al sistema
+</button>
+</form>
+
+<div class="mt-lg bg-surface-container rounded-xl p-md text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-xs">Usuario de prueba</p>
+<p class="font-body-sm text-body-sm text-on-surface">drgarcia / 123456</p>
+</div>
+</div>
+</section>
+</main>

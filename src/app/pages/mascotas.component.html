@@ -1,0 +1,155 @@
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest border-b border-outline-variant shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center px-lg py-md w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-secondary">Veterinaria PetCare</span>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/">Inicio</a>
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 font-bold" routerLink="/mascotas">Mascotas</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/citas">Citas</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors" routerLink="/historial">Historial</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button type="button" (click)="cerrarSesion()" class="inline-flex items-center gap-xs px-md py-sm rounded-lg border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary transition-colors font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">logout</span>
+Salir
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant ml-xs">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly female veterinarian in her late 30s, wearing a clean white lab coat with a subtle stethoscope around her neck. She is smiling warmly in a bright, modern clinic environment with soft, high-key lighting. The background features a minimalist, clinical setting with teal and white accents, maintaining a professional and caring atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD02EWmCmh_6o4syKLtBNLNdWMaFZNzcR8N3jlIivzAM3nJdQicNIbL5_s4y9QOjOynK0hLq3LG7Elomv6G3gGWGOu2CC_nawLNkrKqB-V2zozWTVB7SxrceRXPu3DaWec2Zp2uZmtNEODCLdXYqb6O9GlADiCARYw8tNabEa-ihplsVN_onNd9dGm6fD1vgTZNzXZyE9JwjSUAtZfvI8ZyLGbl_8N1ZC88yub2z0bIwCenaEjVC8Rn"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-lg py-xl min-h-[calc(100vh-180px)]">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-lg mb-xl">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Gestión de Mascotas</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Administra el registro y seguimiento de todos tus pacientes.</p>
+@if (mensaje) {
+<p class="font-body-sm text-body-sm text-primary mt-sm">{{ mensaje }}</p>
+}
+</div>
+<button type="button" (click)="alternarFormulario()" class="bg-primary text-on-primary px-lg py-md rounded-xl font-label-md text-label-md flex items-center gap-sm shadow-md hover:brightness-110 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                Registrar Mascota
+</button>
+</div>
+@if (mostrarFormulario) {
+<form [formGroup]="mascotaForm" (ngSubmit)="registrarMascota()" class="bg-surface-container-lowest rounded-xl custom-shadow p-lg mb-lg border border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Nombre</label>
+<input formControlName="nombre" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary/20 bg-surface text-on-surface px-md py-sm transition-all" placeholder="Ej. Rocky" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Especie</label>
+<select formControlName="especie" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary/20 bg-surface text-on-surface px-md py-sm transition-all">
+<option>Perro</option>
+<option>Gato</option>
+<option>Conejo</option>
+<option>Hamster</option>
+<option>Otro</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Raza</label>
+<input formControlName="raza" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary/20 bg-surface text-on-surface px-md py-sm transition-all" placeholder="Ej. Mestizo" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Edad</label>
+<input formControlName="edad" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary/20 bg-surface text-on-surface px-md py-sm transition-all" min="0" type="number"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Sexo</label>
+<select formControlName="sexo" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary/20 bg-surface text-on-surface px-md py-sm transition-all">
+<option>Macho</option>
+<option>Hembra</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Dueño</label>
+<input formControlName="dueno" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary/20 bg-surface text-on-surface px-md py-sm transition-all" placeholder="Nombre del dueño" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs">Teléfono</label>
+<input formControlName="telefono" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary/20 bg-surface text-on-surface px-md py-sm transition-all" placeholder="+51 999 999 999" type="text"/>
+</div>
+</div>
+<div class="flex justify-between items-center mt-lg">
+<p class="font-body-sm text-body-sm text-on-surface-variant">Los datos quedan guardados de forma simulada durante la sesión.</p>
+<button type="submit" class="bg-primary text-on-primary px-lg py-md rounded-lg font-label-md text-label-md hover:brightness-110 transition-all active:scale-95">Guardar</button>
+</div>
+</form>
+}
+<!-- Filter & Search Bar -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow p-md mb-lg flex flex-col md:flex-row gap-md items-center border border-outline-variant">
+<div class="relative flex-grow w-full">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input #busquedaMascotas (input)="buscarMascotas(busquedaMascotas.value)" class="w-full pl-xl pr-md py-sm rounded-lg border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none text-body-sm font-body-sm transition-all" placeholder="Buscar por nombre, especie o dueño..." type="text"/>
+</div>
+</div>
+<!-- Table Card Container -->
+<div class="bg-surface-container-lowest rounded-xl custom-shadow border border-outline-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-bright">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Mascota</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Especie</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Dueño</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Última Visita</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant">Estado</th>
+<th class="px-lg py-md font-label-md text-label-md text-on-surface-variant border-b border-outline-variant text-right">Acciones</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+@if (mascotasExtraFiltradas.length === 0) {
+<tr>
+<td class="px-lg py-xl text-center text-on-surface-variant" colspan="6">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-sm">pets</span>
+<p class="font-body-md text-body-md">Todavía no hay mascotas registradas.</p>
+<p class="font-body-sm text-body-sm">Usa el botón Registrar Mascota para crear el primer paciente.</p>
+</td>
+</tr>
+}
+@for (mascota of mascotasExtraFiltradas; track mascota.nombre) {
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg overflow-hidden bg-secondary-container flex items-center justify-center text-primary font-bold">{{ mascota.nombre[0] }}</div>
+<div><p class="font-label-md text-label-md text-on-surface">{{ mascota.nombre }}</p><p class="font-body-sm text-body-sm text-on-surface-variant">{{ mascota.edad }} anios - {{ mascota.sexo }}</p></div>
+</div>
+</td>
+<td class="px-lg py-md"><span class="px-2 py-1 rounded-full text-label-sm font-label-sm bg-secondary-container text-on-secondary-container">{{ mascota.especie }}</span></td>
+<td class="px-lg py-md"><p class="font-body-md text-body-md text-on-surface">{{ mascota.duenio }}</p><p class="font-body-sm text-body-sm text-on-surface-variant">{{ mascota.telefono }}</p></td>
+<td class="px-lg py-md text-body-sm text-on-surface">{{ mascota.visita }}</td>
+<td class="px-lg py-md"><span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-tertiary-fixed/30 text-on-tertiary-fixed-variant">{{ mascota.estado }}</span></td>
+<td class="px-lg py-md text-right"><button type="button" routerLink="/historial" class="p-xs rounded-lg hover:bg-surface-variant transition-colors" title="Ver historial"><span class="material-symbols-outlined text-on-surface-variant">history</span></button></td>
+</tr>
+}
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-lg py-md bg-surface-bright flex flex-col md:flex-row justify-between items-center gap-md">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Mostrando {{ mascotasExtraFiltradas.length }} mascotas registradas</span>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-outline-variant mt-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-lg py-xl w-full max-w-container-max mx-auto gap-md">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-label-md text-label-md font-bold text-secondary">Veterinaria PetCare</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Veterinaria PetCare. All rights reserved.</span>
+</div>
+<div class="flex gap-lg items-center">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" routerLink="/">Privacidad</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" routerLink="/">Términos</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-colors" routerLink="/mascotas">Contacto</a>
+</div>
+</div>
+</footer>
+<!-- Simple Micro-interactions Script -->

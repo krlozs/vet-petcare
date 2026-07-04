@@ -1,0 +1,154 @@
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center px-lg py-md w-full max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-secondary dark:text-secondary-fixed">Veterinaria PetCare</span>
+<nav class="hidden md:flex items-center gap-lg">
+<a class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 font-bold transition-all duration-200 ease-in-out" routerLink="/">Inicio</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors transition-all duration-200 ease-in-out" routerLink="/mascotas">Mascotas</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors transition-all duration-200 ease-in-out" routerLink="/citas">Citas</a>
+<a class="font-body-md text-body-md text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors transition-all duration-200 ease-in-out" routerLink="/historial">Historial</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button type="button" (click)="cerrarSesion()" class="inline-flex items-center gap-xs px-md py-sm rounded-lg border border-outline-variant text-on-surface-variant hover:text-primary hover:border-primary transition-colors font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-sm">logout</span>
+Salir
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant ml-2">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly veterinarian in a clean white clinic environment. The doctor has a kind expression and is wearing a subtle stethoscope around their neck. The lighting is soft and clinical, conveying trust and medical expertise in a modern, light-filled office." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDll8Q-SmxkTmONBO3hyjPFv1o-wx9RqZxhrZMaKKE1vCm_2bregDNHVjjdFi3kY9O3LEk67O_7tokcAHYYZEt1Q9UZc_xAJ2OYR2q08-ocA6Lf_3SK5LfCZNHqyZjAOG6s8bCqDkRmnml_9-wh3vuzaFB3GvJ3wrQcVFUXsgAev9zRZN1FFi66l86N1g1skjkWveO0Hghy9R9zJIExNHueQow607D3o3cRBRH2-PnFdVKhvwYc8fMT"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-lg py-xl">
+<!-- Welcome Section -->
+<section class="mb-xl">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Bienvenido de nuevo, Dr. Garcia</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Aquí tienes un resumen de lo que está sucediendo en la clínica hoy.</p>
+</section>
+<!-- Stats Grid (Bento Style) -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xl">
+<!-- Total Pets Card -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow flex flex-col justify-between border border-outline-variant/30">
+<div class="flex justify-between items-start mb-md">
+<div class="bg-primary-container/10 p-3 rounded-lg">
+<span class="material-symbols-outlined text-primary text-[28px]">pets</span>
+</div>
+<span class="bg-tertiary-fixed-dim/20 text-on-tertiary-fixed-variant px-2 py-1 rounded text-label-sm font-label-sm">+4.5%</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Total Mascotas</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">{{ veterinariaService.resumen().totalMascotas }}</h2>
+</div>
+</div>
+<!-- Today's Appointments -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow flex flex-col justify-between border border-outline-variant/30">
+<div class="flex justify-between items-start mb-md">
+<div class="bg-secondary-container/10 p-3 rounded-lg">
+<span class="material-symbols-outlined text-secondary text-[28px]">calendar_today</span>
+</div>
+<span class="bg-secondary-fixed/30 text-on-secondary-fixed-variant px-2 py-1 rounded text-label-sm font-label-sm">Hoy</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Citas agendadas</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">{{ veterinariaService.resumen().citasAgendadas }}</h2>
+</div>
+</div>
+<!-- Pending Reports -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow flex flex-col justify-between border border-outline-variant/30">
+<div class="flex justify-between items-start mb-md">
+<div class="bg-error-container/20 p-3 rounded-lg">
+<span class="material-symbols-outlined text-error text-[28px]">clinical_notes</span>
+</div>
+<span class="bg-secondary-fixed/30 text-on-secondary-fixed-variant px-2 py-1 rounded text-label-sm font-label-sm">Total</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-xs">Atenciones registradas</p>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">{{ veterinariaService.resumen().historiales }}</h2>
+</div>
+</div>
+</section>
+<!-- Main Content Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Recent Activity List (8 Columns) -->
+<div class="lg:col-span-8">
+<div class="bg-surface-container-lowest rounded-xl card-shadow border border-outline-variant/30 overflow-hidden">
+<div class="px-lg py-md border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Actividad Reciente</h3>
+<button type="button" routerLink="/historial" class="text-primary font-label-md text-label-md hover:underline">Ver Todo</button>
+</div>
+<div class="divide-y divide-outline-variant">
+@if (citasRecientes.length === 0) {
+<div class="px-lg py-xl text-center text-on-surface-variant">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-sm">event_note</span>
+<p class="font-body-md text-body-md">No hay actividad reciente.</p>
+<p class="font-body-sm text-body-sm">Las citas creadas aparecerán en esta sección.</p>
+</div>
+}
+@for (cita of citasRecientes; track cita.id) {
+<div class="px-lg py-md flex items-center gap-md hover:bg-surface-container-low transition-colors">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">event_available</span>
+</div>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-on-surface">Nueva cita registrada para <span class="font-bold">{{ cita.mascota }}</span> - {{ cita.motivo }}.</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ cita.fecha }} {{ cita.hora }} • {{ cita.veterinario }}</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+}
+</div>
+</div>
+</div>
+<!-- Secondary Actions/Quick Access (4 Columns) -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Action Card -->
+<div class="bg-primary text-on-primary p-lg rounded-xl card-shadow">
+<h4 class="font-headline-sm text-headline-sm mb-md">Acciones Rápidas</h4>
+<div class="grid grid-cols-2 gap-md">
+<button type="button" routerLink="/citas" class="bg-on-primary/10 hover:bg-on-primary/20 p-md rounded-lg flex flex-col items-center gap-sm transition-colors text-center">
+<span class="material-symbols-outlined">add_circle</span>
+<span class="font-label-sm text-label-sm">Nueva Cita</span>
+</button>
+<button type="button" routerLink="/mascotas" class="bg-on-primary/10 hover:bg-on-primary/20 p-md rounded-lg flex flex-col items-center gap-sm transition-colors text-center">
+<span class="material-symbols-outlined">person_add</span>
+<span class="font-label-sm text-label-sm">Nueva Mascota</span>
+</button>
+</div>
+</div>
+<!-- Next Appointment Card -->
+<div class="bg-surface-container-lowest p-lg rounded-xl card-shadow border border-outline-variant/30">
+<h4 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Siguiente Cita</h4>
+@if (proximaCita; as cita) {
+<div class="flex items-center gap-md mb-md">
+<div class="bg-secondary-container/20 w-12 h-12 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">schedule</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold text-on-surface">{{ cita.hora }} - {{ cita.veterinario }}</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">{{ cita.mascota }} - {{ cita.motivo }}</p>
+</div>
+</div>
+} @else {
+<p class="font-body-sm text-body-sm text-on-surface-variant mb-md">No hay citas agendadas.</p>
+}
+<button type="button" routerLink="/citas" class="w-full py-2 border border-primary text-primary rounded-lg font-label-md text-label-md hover:bg-primary/5 transition-colors">Ver Detalles</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-surface-container border-t border-outline-variant dark:border-outline mt-xl opacity-90 hover:opacity-100 transition-opacity">
+<div class="flex flex-col md:flex-row justify-between items-center px-lg py-xl w-full max-w-container-max mx-auto">
+<div class="mb-md md:mb-0">
+<span class="font-label-md text-label-md font-bold text-secondary dark:text-secondary-fixed">Veterinaria PetCare</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">© 2024 Veterinaria PetCare. All rights reserved.</p>
+</div>
+<div class="flex gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" routerLink="/">Privacidad</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" routerLink="/">Términos</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim transition-colors" routerLink="/mascotas">Contacto</a>
+</div>
+</div>
+</footer>
