@@ -122,6 +122,8 @@ http://localhost:4200
 - Pipes personalizados
 - Directivas personalizadas
 
-## Nota
+## Integrantes
 
-Los datos se guardan de forma simulada en memoria durante la sesión del navegador. No se usa base de datos porque el alcance del parcial se centra en la interfaz, formularios, rutas y lógica frontend.
+- Carlos E. Ventura Mori
+- Mister Abad Gonza
+- Eddi Cordova Nuñez
